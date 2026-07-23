@@ -16,6 +16,6 @@ spec:
   data:
   - secretKey: MONGODB_PASSWORD
     remoteRef:
-      key: database/creds/{{ .name }}-config-role 
+      key: database/creds/{{ .name }}-role 
       property: password
 {{- end }}
