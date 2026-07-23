@@ -24,7 +24,7 @@ spec:
         runAsGroup: {{ $.Values.security.runAsGroup }}
       containers:
         - name: {{ .name }}
-          image: "{{ $.Values.image.registry }}/pm-{{ .name }}:{{ $.Values.image.tag }}"
+          image: "{{ $.Values.image.registry }}/piggymetrics-fork-{{ .name }}:{{ $.Values.image.tag }}"
           imagePullPolicy: {{ $.Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .port }}
