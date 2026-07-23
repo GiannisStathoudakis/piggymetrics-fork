@@ -29,16 +29,20 @@ spec:
           ports:
             - containerPort: {{ .port }}
           env:
-            - name: DB_USER
+            - name: SPRING_DATA_MONGODB_HOST
+              value: "mongodb"
+            - name: SPRING_DATA_MONGODB_PORT
+              value: "27017"
+            - name: SPRING_DATA_MONGODB_DATABASE
+              value: "piggymetrics"
+            - name: SPRING_DATA_MONGODB_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: {{ .name }}-db-secret
                   key: MONGODB_USERNAME
-            - name: DB_PASS
+            - name: SPRING_DATA_MONGODB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .name }}-db-secret
                   key: MONGODB_PASSWORD
-            - name: SPRING_DATA_MONGODB_URI
-              value: "mongodb://$(DB_USER):$(DB_PASS)@mongodb:27017/piggymetrics"
 {{- end }}
