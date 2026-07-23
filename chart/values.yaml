@@ -1,0 +1,39 @@
+domain: piggymetrics.lab.internal
+image:
+  registry: ghcr.io/giannisstathoudakis
+  tag: latest
+  pullPolicy: Always
+
+security:
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 3000
+  readOnlyRootFilesystem: false
+
+mongodb:
+  image: mongo:5.0
+  port: 27017
+  persistence:
+    enabled: true
+    storageClass: longhorn
+    size: 5Gi
+  vault:
+    enabled: true
+    secretName: mongodb-vault-credentials
+
+microservices:
+  - name: account-service
+    port: 6000
+  - name: auth-service
+    port: 5000
+  - name: config
+    port: 8888
+  - name: gateway
+    port: 4000
+    isApiGateway: true
+  - name: notification-service
+    port: 8000
+  - name: registry
+    port: 8761
+  - name: statistics-service
+    port: 7000
