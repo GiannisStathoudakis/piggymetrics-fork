@@ -34,6 +34,6 @@ spec:
                 secretKeyRef:
                   name: {{ .name }}-db-secret
                   key: MONGODB_PASSWORD
-            - name: SPRING_DATA_MONGODB_HOST
-              value: "mongodb"
+            - name: SPRING_DATA_MONGODB_URI
+              value: "mongodb://vault-admin:$(VAULT_DB_PASSWORD)@mongodb:27017/piggymetrics"
 {{- end }}
