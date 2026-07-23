@@ -34,4 +34,6 @@ spec:
                 secretKeyRef:
                   name: {{ .name }}-db-secret
                   key: MONGODB_PASSWORD
+            - name: SPRING_DATA_MONGODB_HOST
+              value: "mongodb"
 {{- end }}
