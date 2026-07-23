@@ -8,7 +8,7 @@ metadata:
 spec:
   refreshInterval: "1h"
   secretStoreRef:
-    name: vault-backend
+    name: vault-db-backend
     kind: ClusterSecretStore
   target:
     name: {{ .name }}-db-secret
