@@ -28,4 +28,10 @@ spec:
           imagePullPolicy: {{ $.Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .port }}
+          env:
+            - name: SPRING_DATA_MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .name }}-db-secret
+                  key: MONGODB_PASSWORD
 {{- end }}

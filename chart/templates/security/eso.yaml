@@ -1,0 +1,21 @@
+{{- range .Values.microservices }}
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: {{ .name }}-db-credentials
+  namespace: {{ $.Release.Namespace }}
+spec:
+  refreshInterval: "1h"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: {{ .name }}-db-secret
+    creationPolicy: Owner
+  data:
+  - secretKey: MONGODB_PASSWORD
+    remoteRef:
+      key: database/creds/{{ .name }}-role 
+      property: password
+{{- end }}
