@@ -1,6 +1,6 @@
 {{- range .Values.microservices }}
 ---
-apiVersion: external-secrets.io/v1
+apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
   name: {{ .name }}-db-credentials
@@ -18,4 +18,8 @@ spec:
     remoteRef:
       key: database/creds/{{ .name }}-role 
       property: password
+  - secretKey: MONGODB_USERNAME
+    remoteRef:
+      key: database/creds/{{ .name }}-role 
+      property: username
 {{- end }}
